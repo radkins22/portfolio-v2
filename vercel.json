@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!api|_next|_static|[\\w-]+\\.\\w+).*)",
+      "destination": "/"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "not-your-avg-nerd.dev"
+        }
+      ],
+      "destination": "https://not-your-avg-nerd.dev",
+      "permanent": true
+    }
+  ]
+}
