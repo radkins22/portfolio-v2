@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
 import { Brain, Zap, Code, Cpu } from 'lucide-react';
 
-// Import the iframe-based PDB viewer (guaranteed to work)
+// Import the iframe-based PDB viewer with AI molecule adder
 const PDBIframe = dynamic(
   () => import('@/components/3d/PDBIframe'),
   { 
@@ -67,7 +67,7 @@ export default function Interactive() {
           </p>
         </motion.div>
 
-        {/* Centered PDB Viewer */}
+        {/* Centered PDB Viewer with AI Molecule Adder */}
         <div ref={ref} className="flex justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}

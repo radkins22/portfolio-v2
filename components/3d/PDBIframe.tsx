@@ -102,7 +102,7 @@ export default function PDBIframe() {
   return (
     <div className="flex gap-6 w-full">
       {/* Molecule Viewer - Large Left Section */}
-      <div className="flex-1 h-96 lg:h-[600px] bg-black rounded-xl overflow-hidden">
+      <div className="flex-1 h-96 lg:h-[600px] bg-black rounded-xl overflow-hidden border-4 border-cyan-400/50 shadow-lg shadow-cyan-400/20">
         <iframe
           src="/webgl_loader_pdb.html"
           className="w-full h-full border-0"
@@ -115,8 +115,8 @@ export default function PDBIframe() {
       </div>
       
       {/* Add Your Own Molecule Panel - Compact Right Section */}
-      <div className="w-80 h-96 lg:h-[600px] bg-gray-900/30 rounded-xl border border-gray-800 p-6 flex flex-col">
-        <div className="text-cyan-400 font-bold text-lg mb-4 text-center border-b border-gray-700 pb-3">
+      <div className="w-80 h-96 lg:h-[600px] bg-gray-900/30 rounded-xl border-4 border-cyan-400/50 p-6 flex flex-col shadow-lg shadow-cyan-400/20">
+        <div className="text-cyan-400 font-bold text-lg mb-4 text-center border-b border-cyan-400/50 pb-3">
           Add Your Own Molecule
         </div>
         
@@ -130,13 +130,13 @@ export default function PDBIframe() {
           
           <button 
             id="externalLoadMolecule"
-            className="w-full px-4 py-2 bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-medium rounded transition-colors text-sm cursor-pointer"
+            className="w-full px-4 py-2 bg-cyan-400/50 hover:bg-cyan-400/70 disabled:bg-gray-600 disabled:cursor-not-allowed text-cyan-400 font-medium rounded transition-colors text-sm cursor-pointer border border-cyan-400/50"
           >
             Load Molecule
           </button>
           
           <div className="text-gray-400 text-xs text-center">
-            Try: aspirin, unknown drugs, or describe any molecule
+            Try: aspirin, megaphone, housane, codeine, ibuprofen, or other molecules or molecular formulas
           </div>
           
           <div id="externalStatusMessage" className="text-xs text-center min-h-[16px]"></div>
