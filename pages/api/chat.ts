@@ -207,7 +207,7 @@ export default async function handler(
         role: 'system' as const,
         content: PORTFOLIO_CONTEXT
       },
-      ...conversation.map((msg: any) => ({
+      ...conversation.map((msg: { sender: string; text: string }) => ({
         role: msg.sender === 'user' ? 'user' as const : 'assistant' as const,
         content: msg.text
       })),
@@ -239,16 +239,16 @@ export default async function handler(
       usage: completion.usage
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('OpenAI API error:', error);
     
-    if (error.code === 'invalid_api_key') {
+    if ((error as { code?: string }).code === 'invalid_api_key') {
       return res.status(401).json({ 
         message: 'Invalid OpenAI API key' 
       });
     }
     
-    if (error.code === 'insufficient_quota') {
+    if ((error as { code?: string }).code === 'insufficient_quota') {
       return res.status(402).json({ 
         message: 'OpenAI API quota exceeded' 
       });
@@ -256,7 +256,7 @@ export default async function handler(
 
     res.status(500).json({ 
       message: 'Failed to process AI request',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      error: process.env.NODE_ENV === 'development' ? (error as Error).message : undefined
     });
   }
 }

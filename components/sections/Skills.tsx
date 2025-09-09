@@ -201,46 +201,68 @@ export default function Skills() {
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="flex justify-center items-center gap-4 mb-12"
+          className="flex flex-col items-center gap-4 mb-12"
         >
-          <motion.div
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-          >
-            <button
-              onClick={() => setShowSearch(!showSearch)}
-              className="p-3 bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-800 hover:border-green-500/50 transition-all duration-300 group cursor-pointer"
+          <div className="flex justify-center items-center gap-4">
+            <motion.div
+              className="flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
             >
-              <Search className="w-5 h-5 text-gray-400 group-hover:text-green-400" />
-            </button>
-            
-            <AnimatePresence>
-              {showSearch && (
-                <motion.input
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 300, opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  placeholder="Search all skills globally..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  autoFocus
-                  className="px-4 py-3 bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-800 focus:border-green-500/50 text-white placeholder-gray-500 outline-none transition-all duration-300"
-                />
-              )}
-            </AnimatePresence>
-          </motion.div>
+              <button
+                onClick={() => setShowSearch(!showSearch)}
+                className="p-3 bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-800 hover:border-green-500/50 transition-all duration-300 group cursor-pointer"
+              >
+                <Search className="w-5 h-5 text-gray-400 group-hover:text-green-400" />
+              </button>
+              
+              <AnimatePresence>
+                {showSearch && (
+                  <motion.input
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 300, opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    placeholder="Search all skills globally..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    autoFocus
+                    className="px-4 py-3 bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-800 focus:border-green-500/50 text-white placeholder-gray-500 outline-none transition-all duration-300"
+                  />
+                )}
+              </AnimatePresence>
+            </motion.div>
 
-          <motion.div
-            className="text-sm text-gray-400 bg-gray-900/30 px-4 py-2 rounded-lg"
-            animate={{ opacity: filteredSkills.length > 0 ? 1 : 0.5 }}
-          >
-            {filteredSkills.length} skill{filteredSkills.length !== 1 ? 's' : ''} found
-            {searchTerm && filteredSkills.length > 0 && (
-              <span className="ml-2 text-green-400">
-                (global search active)
-              </span>
+            {/* Skills found counter - hidden on mobile when search is open */}
+            <motion.div
+              className={`text-sm text-gray-400 bg-gray-900/30 px-4 py-2 rounded-lg ${showSearch ? 'hidden md:block' : 'block'}`}
+              animate={{ opacity: filteredSkills.length > 0 ? 1 : 0.5 }}
+            >
+              {filteredSkills.length} skill{filteredSkills.length !== 1 ? 's' : ''} found
+              {searchTerm && filteredSkills.length > 0 && (
+                <span className="ml-2 text-green-400">
+                  (global search active)
+                </span>
+              )}
+            </motion.div>
+          </div>
+
+          {/* Skills found counter - shows below search on mobile */}
+          <AnimatePresence>
+            {showSearch && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="md:hidden text-sm text-gray-400 bg-gray-900/30 px-4 py-2 rounded-lg"
+              >
+                {filteredSkills.length} skill{filteredSkills.length !== 1 ? 's' : ''} found
+                {searchTerm && filteredSkills.length > 0 && (
+                  <span className="ml-2 text-green-400">
+                    (global search active)
+                  </span>
+                )}
+              </motion.div>
             )}
-          </motion.div>
+          </AnimatePresence>
         </motion.div>
 
         {/* Skills Grid */}

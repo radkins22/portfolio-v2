@@ -100,9 +100,9 @@ export default function PDBIframe() {
   }, []);
 
   return (
-    <div className="flex gap-6 w-full">
-      {/* Molecule Viewer - Large Left Section */}
-      <div className="flex-1 h-96 lg:h-[600px] bg-black rounded-xl overflow-hidden border-4 border-cyan-400/50 shadow-lg shadow-cyan-400/20">
+    <div className="flex flex-col lg:flex-row gap-6 w-full">
+      {/* Molecule Viewer - Large Top/Left Section */}
+      <div className="w-full h-[500px] lg:flex-1 lg:h-[600px] bg-black rounded-xl overflow-hidden border-4 border-cyan-400/50 shadow-lg shadow-cyan-400/20">
         <iframe
           src="/webgl_loader_pdb.html"
           className="w-full h-full border-0"
@@ -114,13 +114,13 @@ export default function PDBIframe() {
         />
       </div>
       
-      {/* Add Your Own Molecule Panel - Compact Right Section */}
-      <div className="w-80 h-96 lg:h-[600px] bg-gray-900/30 rounded-xl border-4 border-cyan-400/50 p-6 flex flex-col shadow-lg shadow-cyan-400/20">
-        <div className="text-cyan-400 font-bold text-lg mb-4 text-center border-b border-cyan-400/50 pb-3">
+      {/* Add Your Own Molecule Panel - Compact Bottom/Right Section */}
+      <div className="w-full lg:w-80 h-64 lg:h-[600px] bg-gray-900/30 rounded-xl border-4 border-cyan-400/50 p-4 lg:p-6 flex flex-col shadow-lg shadow-cyan-400/20">
+        <div className="text-cyan-400 font-bold text-lg lg:mb-4 mb-2 text-center border-b border-cyan-400/50 pb-2 lg:pb-3">
           Add Your Own Molecule
         </div>
         
-        <div className="flex-1 flex flex-col gap-4">
+        <div className="flex-1 flex flex-col gap-2 lg:gap-4">
           <input 
             type="text" 
             id="externalMoleculeInput"
@@ -136,12 +136,12 @@ export default function PDBIframe() {
           </button>
           
           <div className="text-gray-400 text-xs text-center">
-            Try: aspirin, megaphone, housane, codeine, ibuprofen, or other molecules or molecular formulas
+            Try: aspirin, codeine, ibuprofen, or other molecules
           </div>
           
           <div id="externalStatusMessage" className="text-xs text-center min-h-[16px]"></div>
           
-          <div className="mt-auto pt-4 border-t border-gray-700">
+          <div className="mt-auto pt-2 lg:pt-4 border-t border-gray-700 hidden lg:block">
             <div className="text-xs text-gray-500 space-y-2">
               <div className="font-medium text-gray-400 mb-2">Features:</div>
               <div className="flex items-center gap-2">
@@ -157,6 +157,24 @@ export default function PDBIframe() {
                 <span>Chemical formulas supported</span>
               </div>
             </div>
+          </div>
+          
+          {/* Compact mobile features list */}
+          <div className="lg:hidden flex flex-wrap gap-1 text-xs text-gray-500 justify-center">
+            <span className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+              PubChem
+            </span>
+            <span className="text-gray-600">•</span>
+            <span className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+              AI-generated
+            </span>
+            <span className="text-gray-600">•</span>
+            <span className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 bg-purple-400 rounded-full"></span>
+              Formulas
+            </span>
           </div>
         </div>
       </div>

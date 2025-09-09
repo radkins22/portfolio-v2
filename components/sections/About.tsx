@@ -87,14 +87,14 @@ export default function About() {
               variants={itemVariants}
               className="text-gray-400 text-lg leading-relaxed"
             >
-              From adversity to full-stack innovation, I've turned setbacks into source code. With a strong STEM foundation and relentless drive, I build real-world solutions— from scalable backends to responsive frontends.
+              From adversity to full-stack innovation, I&apos;ve turned setbacks into source code. With a strong STEM foundation and relentless drive, I build real-world solutions— from scalable backends to responsive frontends.
             </motion.p>
 
             <motion.p 
               variants={itemVariants}
               className="text-gray-400 text-lg leading-relaxed"
             >
-              I write clean, efficient code with purpose, using every challenge as fuel to grow, solve, and ship. I'm not here just to build apps—I'm here to break barriers, inspire through action, and prove that where you start doesn't define how far you can go.
+              I write clean, efficient code with purpose, using every challenge as fuel to grow, solve, and ship. I&apos;m not here just to build apps—I&apos;m here to break barriers, inspire through action, and prove that where you start doesn&apos;t define how far you can go.
             </motion.p>
 
             <motion.div variants={itemVariants} className="pt-4">

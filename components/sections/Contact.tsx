@@ -85,7 +85,7 @@ export default function Contact() {
             <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to create something amazing.
+            Have a project in mind? Let&apos;s work together to create something amazing.
           </p>
         </motion.div>
 
@@ -186,7 +186,7 @@ export default function Contact() {
                   className="flex items-center gap-2 text-green-400 bg-green-400/10 px-4 py-3 rounded-lg"
                 >
                   <CheckCircle className="w-5 h-5" />
-                  Message sent successfully! I'll get back to you soon.
+                  Message sent successfully! I&apos;ll get back to you soon.
                 </motion.div>
               )}
 
@@ -243,9 +243,9 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 1 }}
               className="p-6 bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/30 rounded-xl"
             >
-              <h3 className="text-xl font-semibold text-white mb-2">Let's Build Something Amazing</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">Let&apos;s Build Something Amazing</h3>
               <p className="text-gray-400 mb-4">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
               </p>
               <div className="flex items-center gap-2 text-green-400">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />

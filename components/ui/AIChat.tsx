@@ -16,7 +16,7 @@ export default function AIChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm Rachael's AI portfolio assistant. I know all about her current work at Columbia University and Banyan Labs, her AI projects, technical skills, and experience. Ask me anything about her background, projects, or expertise!",
+      text: "Hi! I'm Rachael's AI portfolio assistant. I know all about her current work at Columbia University and Banyan Labs, her AI projects, technical skills, and experience. Feel free to ask me anything about Rachael!",
       sender: 'assistant',
       timestamp: new Date(),
     },
@@ -74,7 +74,7 @@ export default function AIChat() {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Chat error:', error);
       
       const errorMessage: Message = {
@@ -128,17 +128,17 @@ export default function AIChat() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[50vh] md:h-[600px] bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-green-500 to-cyan-500 p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-green-500 to-cyan-500 p-3 md:p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-white" />
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <Bot className="w-5 h-5 md:w-6 md:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold">Portfolio AI Assistant</h3>
-                  <p className="text-white/80 text-sm">Always here to help</p>
+                  <h3 className="text-white font-semibold text-sm md:text-base">Portfolio AI Assistant</h3>
+                  <p className="text-white/80 text-xs md:text-sm">Always here to help</p>
                 </div>
               </div>
               <button
@@ -150,7 +150,7 @@ export default function AIChat() {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -209,9 +209,9 @@ export default function AIChat() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Suggested Questions */}
+            {/* Suggested Questions - Desktop Only */}
             {messages.length === 1 && (
-              <div className="px-4 pb-2">
+              <div className="hidden md:block px-4 pb-2">
                 <p className="text-xs text-gray-500 mb-2">Suggested questions:</p>
                 <div className="flex flex-wrap gap-2">
                   {suggestedQuestions.map((question, index) => (
@@ -228,7 +228,7 @@ export default function AIChat() {
             )}
 
             {/* Input Area */}
-            <div className="p-4 border-t border-gray-800">
+            <div className="p-3 md:p-4 border-t border-gray-800">
               <div className="flex gap-2">
                 <input
                   type="text"
