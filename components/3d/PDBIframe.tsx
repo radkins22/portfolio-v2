@@ -136,7 +136,7 @@ export default function PDBIframe() {
           </button>
           
           <div className="text-gray-400 text-xs text-center">
-            Try: aspirin, codeine, ibuprofen, or other molecules
+            Try: aspirin, codeine, ibuprofen, supermolecule, or other molecules
           </div>
           
           <div id="externalStatusMessage" className="text-xs text-center min-h-[16px]"></div>
