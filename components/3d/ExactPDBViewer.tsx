@@ -12,8 +12,8 @@ export default function ExactPDBViewer() {
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera;
     renderer: THREE.WebGLRenderer;
-    labelRenderer: any;
-    controls: any;
+    labelRenderer: unknown;
+    controls: unknown;
     root: THREE.Group;
     cleanup: () => void;
   }>();
@@ -137,10 +137,11 @@ export default function ExactPDBViewer() {
           }
         }
 
-        loader.load(url, (pdb: any) => {
-          const geometryAtoms = pdb.geometryAtoms;
-          const geometryBonds = pdb.geometryBonds;
-          const json = pdb.json;
+        loader.load(url, (pdb: unknown) => {
+          const pdbData = pdb as Record<string, unknown>;
+          const geometryAtoms = pdbData.geometryAtoms;
+          const geometryBonds = pdbData.geometryBonds;
+          const json = pdbData.json;
 
           const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
           const sphereGeometry = new THREE.IcosahedronGeometry(1, 3);
@@ -307,10 +308,11 @@ export default function ExactPDBViewer() {
       }
     }
 
-    loader.load(url, (pdb: any) => {
-      const geometryAtoms = pdb.geometryAtoms;
-      const geometryBonds = pdb.geometryBonds;
-      const json = pdb.json;
+    loader.load(url, (pdb: unknown) => {
+      const pdbData = pdb as Record<string, unknown>;
+      const geometryAtoms = pdbData.geometryAtoms;
+      const geometryBonds = pdbData.geometryBonds;
+      const json = pdbData.json;
 
       const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
       const sphereGeometry = new THREE.IcosahedronGeometry(1, 3);
@@ -428,7 +430,7 @@ export default function ExactPDBViewer() {
             <div className="space-y-2 text-sm text-gray-300">
               <p>🖱️ <strong>Drag</strong> to rotate • 🔍 <strong>Scroll</strong> to zoom • 🎯 <strong>Right-drag</strong> to pan</p>
               <p>⚛️ Exact replica of Three.js webgl_loader_pdb.html example</p>
-              <p>🧬 Viewing: {Object.keys(MOLECULES)[Object.values(MOLECULES).indexOf(currentMolecule as any)]}</p>
+              <p>🧬 Viewing: {Object.keys(MOLECULES)[Object.values(MOLECULES).indexOf(currentMolecule as string)]}</p>
             </div>
           </div>
         </motion.div>

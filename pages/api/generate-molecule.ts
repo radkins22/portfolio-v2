@@ -68,7 +68,7 @@ async function generateMolecularStructure(input: string): Promise<{ pdb: string;
   }
 }
 
-async function generateWithOpenAI(input: string): Promise<any> {
+async function generateWithOpenAI(input: string): Promise<unknown> {
   console.log('OpenAI API Key exists:', !!process.env.OPENAI_API_KEY);
   console.log('OpenAI API Key length:', process.env.OPENAI_API_KEY?.length);
   
@@ -150,7 +150,7 @@ If unknown/fictional, create a reasonable organic structure.`
   }
 }
 
-function analyzeMoleculeInput(input: string): any {
+function analyzeMoleculeInput(input: string): Record<string, unknown> {
   const inputLower = input.toLowerCase().trim();
   
   // Metallic elements and their crystal structures
@@ -242,7 +242,7 @@ function analyzeMoleculeInput(input: string): any {
   };
 }
 
-function generateAtomicCoordinates(moleculeInfo: any): Array<{ x: number; y: number; z: number; element: string }> {
+function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array<{ x: number; y: number; z: number; element: string }> {
   const atoms = [];
   
   if (moleculeInfo.backbone === 'metallic_crystal' && moleculeInfo.metalInfo) {
@@ -677,7 +677,7 @@ function generateAtomicCoordinates(moleculeInfo: any): Array<{ x: number; y: num
   return atoms;
 }
 
-function generateBonds(atoms: Array<{ x: number; y: number; z: number; element: string }>, moleculeInfo: any): Array<{ atom1: number; atom2: number }> {
+function generateBonds(atoms: Array<{ x: number; y: number; z: number; element: string }>, moleculeInfo: Record<string, unknown>): Array<{ atom1: number; atom2: number }> {
   const bonds = [];
   
   // Generate bonds based on proximity and chemical rules

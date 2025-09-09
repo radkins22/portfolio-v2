@@ -176,7 +176,7 @@ export default function PDBViewer() {
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera;
     renderer: THREE.WebGLRenderer;
-    controls: any;
+    controls: unknown;
     cleanup: () => void;
   }>();
 
