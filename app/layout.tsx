@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   keywords: "software developer, React, MERN Stack, JavaScript, web development, portfolio, Node.js, MongoDB, full-stack",
   authors: [{ name: "Rachael Higgins" }],
   robots: "index, follow",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" }
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/favicon-32x32.png",
+  },
   openGraph: {
     title: "Rachael Higgins | Software Engineer",
     description: "Building robust backend logic to dynamic UI, turning complex requirements into real-world, maintainable code",
