@@ -6,7 +6,7 @@ import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 
-function BrainCore({ color = "#22c55e", position = [0, 0, 0] }) {
+function BrainCore({ color = "#22c55e", position = [0, 0, 0] as [number, number, number] }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {

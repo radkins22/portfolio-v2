@@ -50,9 +50,7 @@ function NeuralNode({ position, connections, index }: NodeProps) {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={2}
-            array={new Float32Array([...position, ...endPos])}
-            itemSize={3}
+            args={[new Float32Array([...position, ...endPos]), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial 
@@ -145,15 +143,11 @@ function ParticleField() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={particleCount}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
-          count={particleCount}
-          array={colors}
-          itemSize={3}
+          args={[colors, 3]}
         />
       </bufferGeometry>
       <pointsMaterial 

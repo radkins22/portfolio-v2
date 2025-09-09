@@ -24,7 +24,7 @@ export default function InteractiveBackground() {
   const particlesRef = useRef<Particle[]>([]);
   const connectionsRef = useRef<Connection[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
 
   const [isHovered, setIsHovered] = useState(false);
 

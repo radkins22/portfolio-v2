@@ -107,11 +107,11 @@ const atomSizes: { [key: string]: number } = {
 
 export default function MolecularViewer() {
   const mountRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene>();
-  const rendererRef = useRef<THREE.WebGLRenderer>();
-  const cameraRef = useRef<THREE.PerspectiveCamera>();
-  const moleculeGroupRef = useRef<THREE.Group>();
-  const animationIdRef = useRef<number>();
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const moleculeGroupRef = useRef<THREE.Group | null>(null);
+  const animationIdRef = useRef<number | null>(null);
   const [currentMolecule, setCurrentMolecule] = useState(0);
 
   useEffect(() => {

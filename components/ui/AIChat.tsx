@@ -79,7 +79,7 @@ export default function AIChat() {
       
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: `Sorry, I encountered an error: ${error.message}. Please make sure the OpenAI API key is configured properly.`,
+        text: `Sorry, I encountered an error: ${(error as Error).message || 'Unknown error'}. Please make sure the OpenAI API key is configured properly.`,
         sender: 'assistant',
         timestamp: new Date(),
       };

@@ -178,7 +178,7 @@ export default function PDBViewer() {
     renderer: THREE.WebGLRenderer;
     controls: unknown;
     cleanup: () => void;
-  }>();
+  } | null>(null);
 
   useEffect(() => {
     if (!mountRef.current) return;

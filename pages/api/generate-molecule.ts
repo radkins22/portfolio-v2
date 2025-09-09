@@ -52,8 +52,8 @@ async function generateMolecularStructure(input: string): Promise<{ pdb: string;
       return null;
     }
 
-    const atoms = generateAtomicCoordinates(moleculeInfo);
-    const bonds = generateBonds(atoms, moleculeInfo);
+    const atoms = generateAtomicCoordinates(moleculeInfo as Record<string, unknown>);
+    const bonds = generateBonds(atoms, moleculeInfo as Record<string, unknown>);
     
     const pdb = createPDBFromStructure(atoms, bonds, input);
     
@@ -242,12 +242,12 @@ function analyzeMoleculeInput(input: string): Record<string, unknown> {
   };
 }
 
-function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array<{ x: number; y: number; z: number; element: string }> {
-  const atoms = [];
+function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array<{ x: number; y: number; z: number; element: string; bonds?: number[] }> {
+  const atoms: Array<{ x: number; y: number; z: number; element: string; bonds?: number[] }> = [];
   
   if (moleculeInfo.backbone === 'metallic_crystal' && moleculeInfo.metalInfo) {
     // Generate crystal structure for metallic elements
-    const { element, structure } = moleculeInfo.metalInfo;
+    const { element, structure } = moleculeInfo.metalInfo as { element: string; structure: string };
     
     if (structure === 'fcc_crystal') {
       // Face-centered cubic crystal structure
@@ -276,7 +276,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
           // Connect atoms that are close (nearest neighbors in FCC)
           if (Math.abs(distance - a/Math.sqrt(2)) < 0.1) {
             atoms[i].bonds = atoms[i].bonds || [];
-            atoms[i].bonds.push(j);
+            atoms[i].bonds!.push(j);
           }
         }
       }
@@ -317,17 +317,17 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
     
   } else if (moleculeInfo.backbone === 'cage_structure' && moleculeInfo.atoms) {
     // Generate cage-like structures (paddlanes, adamantane, cubane, etc.)
-    const atomCounts = moleculeInfo.atoms;
+    const atomCounts = moleculeInfo.atoms as { C: number; H: number; O: number; N: number; S?: number; P?: number };
     const C = atomCounts.C || 0;
     const H = atomCounts.H || 0;
     
     if (C >= 8) {
       // Generate paddlane-like or adamantane-like structure
-      const specialFeatures = moleculeInfo.specialFeatures || [];
+      const specialFeatures = (moleculeInfo.specialFeatures as string[]) || [];
       
-      if (specialFeatures.includes('cage_structure') || moleculeInfo.name?.toLowerCase().includes('paddlan')) {
+      if (specialFeatures.includes('cage_structure') || (moleculeInfo.name as string)?.toLowerCase().includes('paddlan')) {
         // Paddlane structure - two parallel rings connected by bridges
-        const positions = [];
+        const positions: number[][] = [];
         
         // First ring (bottom)
         for (let i = 0; i < 4; i++) {
@@ -400,7 +400,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
     
   } else if (moleculeInfo.backbone === 'polycyclic_structure' && moleculeInfo.atoms) {
     // Generate polycyclic structures (steroids, complex ring systems)
-    const atomCounts = moleculeInfo.atoms;
+    const atomCounts = moleculeInfo.atoms as { C: number; H: number; O: number; N: number; S?: number; P?: number };
     const C = atomCounts.C || 0;
     const H = atomCounts.H || 0;
     const O = atomCounts.O || 0;
@@ -464,7 +464,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
     
   } else if (moleculeInfo.backbone === 'formula_based' && moleculeInfo.atoms) {
     // Generate coordinates based on chemical formula with improved 3D structure
-    const atomCounts = moleculeInfo.atoms;
+    const atomCounts = moleculeInfo.atoms as { C: number; H: number; O: number; N: number; S?: number; P?: number };
     const C = atomCounts.C || 0;
     const H = atomCounts.H || 0;
     const O = atomCounts.O || 0;
@@ -473,7 +473,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
     const P = atomCounts.P || 0;
     
     // Build carbon backbone first
-    const carbonPositions = [];
+    const carbonPositions: Array<{ x: number; y: number; z: number; element: string }> = [];
     if (C > 0) {
       if (C <= 4) {
         // Small molecules - use proper tetrahedral geometry
@@ -583,7 +583,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
           'C-F': 1.35, 'C-Cl': 1.78, 'C-Br': 1.94, 'C-I': 2.14
         };
         
-        const bondLength = bondLengths[`C-${element}`] || 1.4;
+        const bondLength = (bondLengths as Record<string, number>)[`C-${element}`] || 1.4;
         
         // Place heteroatom with tetrahedral geometry (109.5° bond angle)
         const tetrahedralAngle = 109.5 * (Math.PI / 180);
@@ -627,7 +627,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
     
   } else {
     // Default: simple carbon chain with functional groups
-    const length = moleculeInfo.length || 4;
+    const length = (moleculeInfo.length as number) || 4;
     
     // Create carbon backbone
     for (let i = 0; i < length; i++) {
@@ -640,7 +640,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
     }
     
     // Add functional groups
-    if (moleculeInfo.functional_groups?.includes('hydroxyl')) {
+    if ((moleculeInfo.functional_groups as string[])?.includes('hydroxyl')) {
       atoms.push({
         x: atoms[atoms.length - 1].x,
         y: 1.2,
@@ -677,7 +677,7 @@ function generateAtomicCoordinates(moleculeInfo: Record<string, unknown>): Array
   return atoms;
 }
 
-function generateBonds(atoms: Array<{ x: number; y: number; z: number; element: string }>, moleculeInfo: Record<string, unknown>): Array<{ atom1: number; atom2: number }> {
+function generateBonds(atoms: Array<{ x: number; y: number; z: number; element: string; bonds?: number[] }>, moleculeInfo: Record<string, unknown>): Array<{ atom1: number; atom2: number }> {
   const bonds = [];
   
   // Generate bonds based on proximity and chemical rules

@@ -124,12 +124,10 @@ function NeuralConnections({ active }: { active: boolean }) {
               <bufferGeometry>
                 <bufferAttribute
                   attach="attributes-position"
-                  count={2}
-                  array={new Float32Array([
+                  args={[new Float32Array([
                     ...point,
                     ...nextPoint
-                  ])}
-                  itemSize={3}
+                  ]), 3]}
                 />
               </bufferGeometry>
               <lineBasicMaterial 

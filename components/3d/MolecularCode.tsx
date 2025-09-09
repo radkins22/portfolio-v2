@@ -6,8 +6,6 @@ import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 
-// Extend THREE to include TrackballControls
-extend({ OrbitControls: THREE.OrbitControls });
 
 interface Atom {
   element: string;
@@ -146,8 +144,6 @@ interface BondComponentProps {
 }
 
 function BondComponent({ bond, atoms }: BondComponentProps) {
-  const lineRef = useRef<THREE.Line>(null);
-  
   const points = [
     new THREE.Vector3(...atoms[bond.from].position),
     new THREE.Vector3(...atoms[bond.to].position),
@@ -156,7 +152,7 @@ function BondComponent({ bond, atoms }: BondComponentProps) {
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
   return (
-    <line ref={lineRef}>
+    <line>
       <bufferGeometry attach="geometry" {...geometry} />
       <lineBasicMaterial 
         attach="material" 

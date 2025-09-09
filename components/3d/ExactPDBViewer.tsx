@@ -16,7 +16,7 @@ export default function ExactPDBViewer() {
     controls: unknown;
     root: THREE.Group;
     cleanup: () => void;
-  }>();
+  } | null>(null);
 
   const MOLECULES = {
     'Ethanol': 'ethanol.pdb',
@@ -132,16 +132,19 @@ export default function ExactPDBViewer() {
           }
           
           // Handle CSS2D objects
-          if (child.element && child.element.parentNode) {
-            child.element.parentNode.removeChild(child.element);
+          const childWithElement = child as unknown as Record<string, unknown>;
+          const element = childWithElement.element as unknown;
+          const elementWithParent = element as Record<string, unknown>;
+          if (element && elementWithParent.parentNode) {
+            (elementWithParent.parentNode as unknown as { removeChild: (child: unknown) => void }).removeChild(element);
           }
         }
 
         loader.load(url, (pdb: unknown) => {
           const pdbData = pdb as Record<string, unknown>;
-          const geometryAtoms = pdbData.geometryAtoms;
-          const geometryBonds = pdbData.geometryBonds;
-          const json = pdbData.json;
+          const geometryAtoms = pdbData.geometryAtoms as THREE.BufferGeometry;
+          const geometryBonds = pdbData.geometryBonds as THREE.BufferGeometry;
+          const json = pdbData.json as { atoms: Array<Array<unknown>> };
 
           const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
           const sphereGeometry = new THREE.IcosahedronGeometry(1, 3);
@@ -176,14 +179,14 @@ export default function ExactPDBViewer() {
             root.add(object);
 
             // Create labels - exact same as original
-            const atom = json.atoms[i];
+            const atom = json.atoms[i] as unknown[];
             const text = document.createElement('div');
             text.className = 'label';
-            text.style.color = `rgb(${atom[3][0]},${atom[3][1]},${atom[3][2]})`;
+            text.style.color = `rgb(${(atom[3] as number[])[0]},${(atom[3] as number[])[1]},${(atom[3] as number[])[2]})`;
             text.style.textShadow = '-1px 1px 1px rgb(0,0,0)';
             text.style.marginLeft = '25px';
             text.style.fontSize = '20px';
-            text.textContent = atom[4];
+            text.textContent = atom[4] as string;
 
             const label = new CSS2DObject(text);
             label.position.copy(object.position);
@@ -303,16 +306,19 @@ export default function ExactPDBViewer() {
       }
       
       // Handle CSS2D objects
-      if (child.element && child.element.parentNode) {
-        child.element.parentNode.removeChild(child.element);
+      const childWithElement = child as unknown as Record<string, unknown>;
+      const element = childWithElement.element as unknown;
+      const elementWithParent = element as Record<string, unknown>;
+      if (element && elementWithParent.parentNode) {
+        (elementWithParent.parentNode as unknown as { removeChild: (child: unknown) => void }).removeChild(element);
       }
     }
 
     loader.load(url, (pdb: unknown) => {
       const pdbData = pdb as Record<string, unknown>;
-      const geometryAtoms = pdbData.geometryAtoms;
-      const geometryBonds = pdbData.geometryBonds;
-      const json = pdbData.json;
+      const geometryAtoms = pdbData.geometryAtoms as THREE.BufferGeometry;
+      const geometryBonds = pdbData.geometryBonds as THREE.BufferGeometry;
+      const json = pdbData.json as { atoms: Array<Array<unknown>> };
 
       const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
       const sphereGeometry = new THREE.IcosahedronGeometry(1, 3);
@@ -347,14 +353,14 @@ export default function ExactPDBViewer() {
         root.add(object);
 
         // Create labels
-        const atom = json.atoms[i];
+        const atom = json.atoms[i] as unknown[];
         const text = document.createElement('div');
         text.className = 'label';
-        text.style.color = `rgb(${atom[3][0]},${atom[3][1]},${atom[3][2]})`;
+        text.style.color = `rgb(${(atom[3] as number[])[0]},${(atom[3] as number[])[1]},${(atom[3] as number[])[2]})`;
         text.style.textShadow = '-1px 1px 1px rgb(0,0,0)';
         text.style.marginLeft = '25px';
         text.style.fontSize = '20px';
-        text.textContent = atom[4];
+        text.textContent = atom[4] as string;
 
         const label = new CSS2DObject(text);
         label.position.copy(object.position);
