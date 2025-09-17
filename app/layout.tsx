@@ -189,6 +189,12 @@ export default function RootLayout({
         <meta name="geo.placename" content="Kearney" />
         <meta name="geo.position" content="40.699890;-99.081177" />
         <meta name="ICBM" content="40.699890, -99.081177" />
+
+        {/* Explicit favicon meta tags for better browser compatibility */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" href="/favicon-32x32.png" />
       </head>
       <body className="antialiased">
         {children}
