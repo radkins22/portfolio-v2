@@ -8,6 +8,21 @@ import { Github, ExternalLink, Code, Eye, Star, GitBranch, Play, Lock, Globe, X 
 const projects = [
   {
     id: 1,
+    title: "Flashcard AI (Production Site)",
+    description:
+      "Developed an AI-powered flashcard generation platform using Next.js, JavaScript, and Supabase with integrated authentication, enabling users to automatically create personalized study materials and track learning progress through intelligent spaced repetition algorithms.",
+    image: "/images/projects/flashcard.png",
+    tech: ["Next.js", "JavaScript", "Supabase", "AI/ML", "Authentication"],
+    github: "https://github.com/rhiggins-banyanlabs/flashcard-ai",
+    demoVideo: "",
+    liveLink: "https://dontbomb.vercel.app",
+    isCodePrivate: false,
+    categories: ["Web Apps", "AI/ML"],
+    stats: { stars: 145, forks: 32, views: "2.1k" },
+    gradient: "from-indigo-500 to-purple-500",
+  },
+  {
+    id: 2,
     title: "HRPR - AI Event Assistant",
     description:
       "Developed an AI-powered Human-like, Responsive, Personal Representative for conferences and festivals. Features voice-driven natural conversation to help attendees find sessions, explore sponsors, and navigate venues in real-time.",
@@ -28,7 +43,7 @@ const projects = [
     gradient: "from-purple-500 to-pink-500",
   },
   {
-    id: 2,
+    id: 3,
     title: "Assessment Pathways Chrome Extension",
     description:
       "Created an AI-powered Chrome extension for automated grading that integrates seamlessly with educational platforms, enabling teachers to provide instant feedback and assessment on student submissions.",
@@ -43,7 +58,7 @@ const projects = [
     gradient: "from-blue-500 to-purple-500",
   },
   {
-    id: 3,
+    id: 4,
     title: "Reuben Adkins - Musician Portfolio",
     description:
       "Designed and developed a professional portfolio website for a guitarist, featuring music samples, tour dates, and booking functionality with a focus on artistic presentation and user engagement.",
@@ -64,7 +79,7 @@ const projects = [
     gradient: "from-pink-500 to-rose-500",
   },
   {
-    id: 4,
+    id: 5,
     title: "Willy's Philly's Food Truck Website",
     description:
       "Collaborated on building a responsive frontend for a local Arizona-based food truck using React and Tailwind CSS, emphasizing mobile-first design and brand consistency.",
@@ -79,7 +94,7 @@ const projects = [
     gradient: "from-orange-500 to-red-500",
   },
   {
-    id: 5,
+    id: 6,
     title: "Rachael Higgins Portfolio",
     description:
       "Designed and developed a personal tech portfolio using React to highlight project experience, frontend proficiency, and visual design skills.",
@@ -209,14 +224,14 @@ export default function Projects() {
                         src={project.image} 
                         alt={project.title}
                         className={`absolute inset-0 w-full h-full transition-all duration-500 group-hover:scale-105 group-hover:brightness-110 ${
-                          project.id === 4 
-                            ? 'object-contain' 
+                          project.id === 5
+                            ? 'object-contain'
                             : 'object-cover object-center'
                         }`}
                         style={{
-                          objectPosition: 
-                            project.id === 2 ? 'center center' : // Chrome Extension
-                            project.id === 4 ? 'center center' : // Willy's Philly's
+                          objectPosition:
+                            project.id === 3 ? 'center center' : // Chrome Extension
+                            project.id === 5 ? 'center center' : // Willy's Philly's
                             'center top'
                         }}
                       />

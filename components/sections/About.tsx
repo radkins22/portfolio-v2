@@ -98,14 +98,58 @@ export default function About() {
             </motion.p>
 
             <motion.div variants={itemVariants} className="pt-4">
-              <a 
-                href="/documents/Rachael's Tech-Resume.pdf" 
+              <motion.a
+                href="/documents/Rachael's Tech-Resume.pdf"
                 download="Rachael's Tech-Resume.pdf"
-                className="group inline-flex items-center gap-2 text-green-400 font-semibold hover:text-green-300 transition-all duration-300 px-6 py-3 border-2 border-green-400 hover:border-green-300 rounded-lg hover:bg-green-400/10 cursor-pointer"
+                className="group relative inline-flex items-center gap-2 text-green-400 font-semibold hover:text-white transition-all duration-300 px-6 py-3 border-2 border-green-400 hover:border-green-300 rounded-lg hover:bg-green-400/20 cursor-pointer overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    "0 0 0 0 rgba(34, 197, 94, 0)",
+                    "0 0 20px 10px rgba(34, 197, 94, 0.3)",
+                    "0 0 40px 20px rgba(34, 197, 94, 0.1)",
+                    "0 0 20px 10px rgba(34, 197, 94, 0.3)",
+                    "0 0 0 0 rgba(34, 197, 94, 0)"
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
-                Download Resume
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                {/* Animated background glow */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-green-400/20 rounded-lg"
+                  animate={{
+                    opacity: [0.5, 1, 0.5],
+                    scale: [0.95, 1.05, 0.95]
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+
+                {/* Shimmer effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                  animate={{
+                    x: [-100, 300]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    repeatDelay: 1
+                  }}
+                />
+
+                <span className="relative z-10">Download Resume</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
+              </motion.a>
             </motion.div>
           </div>
 

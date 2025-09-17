@@ -202,12 +202,16 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.5 }}
           >
-            <button className="group relative px-8 py-3 overflow-hidden rounded-lg bg-gradient-to-r from-green-500 to-cyan-500 text-white font-semibold transition-all duration-300 hover:scale-105 cursor-pointer">
+            <button
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group relative px-8 py-3 overflow-hidden rounded-lg bg-gradient-to-r from-green-500 to-cyan-500 text-white font-semibold transition-all duration-300 hover:scale-105 cursor-pointer">
               <span className="relative z-10">View Projects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
-            
-            <button className="px-8 py-3 rounded-lg border-2 border-green-500/50 text-green-400 font-semibold transition-all duration-300 hover:bg-green-500/10 hover:border-green-500 hover:scale-105 cursor-pointer">
+
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 rounded-lg border-2 border-green-500/50 text-green-400 font-semibold transition-all duration-300 hover:bg-green-500/10 hover:border-green-500 hover:scale-105 cursor-pointer">
               Contact Me
             </button>
           </motion.div>

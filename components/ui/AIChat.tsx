@@ -108,11 +108,11 @@ export default function AIChat() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white shadow-lg flex items-center justify-center cursor-pointer ${
+        className={`fixed bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white shadow-lg flex items-center justify-center cursor-pointer ${
           isOpen ? 'hidden' : ''
         }`}
       >
-        <MessageSquare className="w-6 h-6" />
+        <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
         <motion.div
           className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500 to-cyan-500"
           animate={{ scale: [1, 1.2, 1] }}

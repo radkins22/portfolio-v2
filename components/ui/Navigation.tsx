@@ -59,14 +59,14 @@ export default function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-2 sm:px-4 lg:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
-            <motion.div 
-              className="flex items-center flex-shrink-0"
+            <motion.div
+              className="flex items-center flex-shrink-0 min-w-0"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-xl sm:text-2xl font-bold gradient-text">{'<RH />'}</span>
+              <span className="text-lg sm:text-xl md:text-2xl font-bold gradient-text whitespace-nowrap">{'<RH />'}</span>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -116,10 +116,10 @@ export default function Navigation() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden flex-shrink-0">
+            <div className="md:hidden flex-shrink-0 ml-2">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-3 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none cursor-pointer transition-colors"
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none cursor-pointer transition-colors min-w-[44px] min-h-[44px]"
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
