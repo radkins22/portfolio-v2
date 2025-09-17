@@ -19,7 +19,7 @@ const InteractiveBackground = dynamic(
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-black">
+    <main className="relative min-h-screen bg-black overflow-x-hidden">
       {/* Interactive Background */}
       <InteractiveBackground />
       

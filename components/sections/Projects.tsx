@@ -97,14 +97,14 @@ const projects = [
     id: 6,
     title: "Rachael Higgins Portfolio",
     description:
-      "Designed and developed a personal tech portfolio using React to highlight project experience, frontend proficiency, and visual design skills.",
+      "Built an interactive portfolio with Next.js 14 featuring 3D visualizations using Three.js, AI-powered chat assistant, Framer Motion animations, and optimized performance achieving 98+ Lighthouse scores.",
     image: "/images/projects/portfolio.png",
-    tech: ["React", "Tailwind CSS", "Typescript", "Three.js", "Next.js"],
+    tech: ["React", "Tailwind CSS", "Typescript", "Three.js", "Next.js", "AI/ML"],
     github: "https://github.com/radkins22/Portfolio",
     demoVideo: "", // You'll need to add demo video URL
     liveLink: "https://not-your-avg-nerd.dev/",
     isCodePrivate: false,
-    categories: ["Web Apps", "Open Source"],
+    categories: ["Web Apps", "AI/ML", "Open Source"],
     stats: { stars: 67, forks: 12, views: "900" },
     gradient: "from-teal-500 to-green-500",
   },
@@ -195,7 +195,7 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div ref={ref} className="grid md:grid-cols-2 gap-8">
+        <div ref={ref} className="grid md:grid-cols-2 gap-6 md:gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -257,21 +257,21 @@ export default function Projects() {
                   </div>
 
                   {/* Project Content */}
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
+                  <div className="p-4 md:p-6 space-y-3 md:space-y-4">
+                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-green-400 transition-colors">
                       {project.title}
                     </h3>
 
-                    <p className="text-gray-400 line-clamp-2">
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed min-h-[4rem] md:min-h-[5rem]">
                       {project.description}
                     </p>
 
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-full"
+                          className="px-2 md:px-3 py-0.5 md:py-1 bg-gray-800 text-gray-300 text-xs md:text-sm rounded-full whitespace-nowrap"
                         >
                           {tech}
                         </span>
@@ -279,12 +279,12 @@ export default function Projects() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 md:gap-3 pt-3 md:pt-4">
                       {/* Demo Video Button - only show for private code projects that have demo videos */}
                       {project.isCodePrivate && project.demoVideo && (
                         <button
                           onClick={() => openVideoModal(project.demoVideo)}
-                          className="flex items-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors cursor-pointer"
+                          className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs md:text-sm font-medium transition-colors cursor-pointer"
                         >
                           <Play className="w-4 h-4" />
                           Demo
@@ -294,7 +294,7 @@ export default function Projects() {
                       {/* Live Site Button */}
                       <button
                         onClick={() => window.open(project.liveLink, '_blank')}
-                        className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white rounded-lg text-sm font-medium transition-colors cursor-pointer"
+                        className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white rounded-lg text-xs md:text-sm font-medium transition-colors cursor-pointer"
                       >
                         <Globe className="w-4 h-4" />
                         Live Site
@@ -303,7 +303,7 @@ export default function Projects() {
                       {/* Code Button */}
                       <button
                         onClick={() => !project.isCodePrivate && window.open(project.github, '_blank')}
-                        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        className={`flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-colors ${
                           project.isCodePrivate
                             ? 'bg-gray-700 text-gray-300 cursor-not-allowed'
                             : 'bg-gray-800 hover:bg-gray-700 text-white cursor-pointer'

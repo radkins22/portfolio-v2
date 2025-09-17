@@ -12,7 +12,7 @@ const experiences = [
     company: 'Columbia University',
     location: 'Remote',
     period: '08/2024 - Present',
-    type: 'Full-time',
+    type: 'Part-time',
     description: [
       'Support 11-week AI Edge cohort, providing technical guidance in Python, APIs, and backend development to justice-impacted adult learners while facilitating live Zoom sessions (Mon-Thurs, 6:15-9:30 PM EST)',
       'Conduct weekly office hours and grade assignments in Canvas LMS, delivering personalized coding support and constructive feedback to help fellows develop foundational software and AI skills',

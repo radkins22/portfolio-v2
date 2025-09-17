@@ -108,11 +108,11 @@ export default function AIChat() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white shadow-lg flex items-center justify-center cursor-pointer ${
+        className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white shadow-lg flex items-center justify-center cursor-pointer ${
           isOpen ? 'hidden' : ''
         }`}
       >
-        <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
+        <MessageSquare className="w-6 h-6" />
         <motion.div
           className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500 to-cyan-500"
           animate={{ scale: [1, 1.2, 1] }}
@@ -128,7 +128,7 @@ export default function AIChat() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[50vh] md:h-[600px] bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[calc(100vw-32px)] max-w-[calc(100vw-32px)] sm:max-w-sm md:w-96 h-[60vh] max-h-[calc(100vh-100px)] md:h-[600px] bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-green-500 to-cyan-500 p-3 md:p-4 flex items-center justify-between">
