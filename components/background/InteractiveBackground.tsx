@@ -185,7 +185,7 @@ export default function InteractiveBackground() {
         className="fixed inset-0 w-full h-full pointer-events-none z-0"
         style={{ background: 'transparent' }}
       />
-      
+
       {/* Interactive elements */}
       <div className="fixed inset-0 pointer-events-none z-10">
         {/* Floating code snippets */}

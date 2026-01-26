@@ -20,36 +20,43 @@ const PDBIframe = dynamic(
 );
 
 export default function Interactive() {
+  const [isMounted, setIsMounted] = React.useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.01,
   });
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <section id="interactive" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0">
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-green-400/30 rounded-full"
-            animate={{
-              x: [Math.random() * 1000, Math.random() * 1000],
-              y: [Math.random() * 1000, Math.random() * 1000],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 15,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-      </div>
+      {isMounted && (
+        <div className="absolute inset-0">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-green-400/30 rounded-full"
+              animate={{
+                x: [(i * 100) % 1000, ((i * 100) + 500) % 1000],
+                y: [(i * 70) % 1000, ((i * 70) + 400) % 1000],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: (i % 3) * 5 + 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                left: `${(i * 10) % 100}%`,
+                top: `${(i * 13) % 100}%`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="max-w-[95vw] mx-auto relative">
         <motion.div

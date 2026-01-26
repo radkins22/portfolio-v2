@@ -26,38 +26,9 @@ export default function Hero() {
       setShowCursor(prev => !prev);
     }, 500);
 
-    // Mouse tracking for name interaction
-    const handleMouseMove = (e: MouseEvent) => {
-      if (nameRef.current) {
-        const rect = nameRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const deltaX = (e.clientX - centerX) / (rect.width / 2);
-        const deltaY = (e.clientY - centerY) / (rect.height / 2);
-        
-        const maxRotation = 15;
-        const rotateY = deltaX * maxRotation;
-        const rotateX = -deltaY * maxRotation;
-        
-        nameRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-      }
-    };
-
-    const handleMouseLeave = () => {
-      if (nameRef.current) {
-        nameRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-      }
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-
     return () => {
       clearInterval(typingInterval);
       clearInterval(cursorInterval);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -66,7 +37,7 @@ export default function Hero() {
     const generateMatrixStream = () => {
       const chars = ['0', '1'];
       const streamLength = 8 + Math.floor(Math.random() * 12); // 8-20 characters per stream
-      const streamChars = Array.from({ length: streamLength }, () => 
+      const streamChars = Array.from({ length: streamLength }, () =>
         chars[Math.floor(Math.random() * chars.length)]
       );
       
@@ -104,7 +75,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
       {/* Matrix Rain Effect - Authentic Matrix Streams */}
       <div className="absolute inset-0 pointer-events-none">
         {matrixStreams.map((stream) => (
@@ -196,8 +167,8 @@ export default function Hero() {
             Building robust backend logic to dynamic UI, I turn complex requirements into real-world, maintainable code. From adversity to full-stack innovation.
           </motion.p>
 
-          <motion.div 
-            className="flex gap-4 justify-center pt-8"
+          <motion.div
+            className="flex flex-wrap gap-4 justify-center pt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.5 }}
@@ -208,6 +179,15 @@ export default function Hero() {
               <span className="relative z-10">View Projects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
+
+            <a
+              href="/documents/Rachael's Tech-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Rachael-Higgins-Resume.pdf"
+              className="px-8 py-3 rounded-lg border-2 border-green-500/50 text-green-400 font-semibold transition-all duration-300 hover:bg-green-500/10 hover:border-green-500 hover:scale-105 cursor-pointer">
+              Download Resume
+            </a>
 
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

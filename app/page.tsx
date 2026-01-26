@@ -22,21 +22,23 @@ export default function Home() {
     <main className="relative min-h-screen bg-black overflow-x-hidden">
       {/* Interactive Background */}
       <InteractiveBackground />
-      
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Sections */}
-      <div id="home">
+      <div id="home" className="relative z-20">
         <Hero />
       </div>
-      
-      <About />
+
       <Projects />
       <Skills />
-      <Interactive />
-      <Experience />
+      <div className="relative z-20">
+        <Experience />
+      </div>
+      <About />
       <Contact />
+      <Interactive />
       
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-gray-800">

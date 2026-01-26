@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiPython, 
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiPython,
   SiNodedotjs, SiDocker, SiMongodb,
   SiPostgresql, SiGraphql, SiTailwindcss, SiGit,
-  SiFirebase, SiVercel, SiSupabase, SiThreedotjs
+  SiFirebase, SiVercel, SiSupabase, SiThreedotjs, SiFlutter
 } from 'react-icons/si';
 import { Cloud, Code, Zap, Database, Server, Palette, Search, Filter } from 'lucide-react';
 
@@ -22,6 +22,7 @@ const skillCategories = [
       { name: 'Three.js', icon: SiThreedotjs, level: 80, description: '3D graphics and WebGL visualization library' },
       { name: 'Next.js', icon: SiNextdotjs, level: 75, description: 'Full-stack React framework with SSR and API routes' },
       { name: 'TypeScript', icon: SiTypescript, level: 70, description: 'Static typing for better code quality and developer experience' },
+      { name: 'Flutter', icon: SiFlutter, level: 65, description: 'Cross-platform mobile app development framework using Dart' },
     ],
   },
   {
@@ -41,11 +42,11 @@ const skillCategories = [
     color: 'from-purple-500 to-pink-500',
     skills: [
       { name: 'Git', icon: SiGit, level: 95, description: 'Version control with branching strategies and collaboration' },
+      { name: 'Docker', icon: SiDocker, level: 90, description: 'Containerization and deployment orchestration' },
       { name: 'Vercel', icon: SiVercel, level: 90, description: 'Modern deployment platform for frontend applications' },
       { name: 'Google Cloud', icon: Cloud, level: 85, description: 'Cloud services, deployment, and infrastructure management' },
       { name: 'Firebase', icon: SiFirebase, level: 80, description: 'Real-time database, authentication, and hosting' },
       { name: 'AWS', icon: Cloud, level: 75, description: 'Amazon Web Services cloud infrastructure and deployment' },
-      { name: 'Docker', icon: SiDocker, level: 70, description: 'Containerization and deployment orchestration' },
     ],
   },
 ];
@@ -57,10 +58,16 @@ export default function Skills() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showSearch, setShowSearch] = useState(false);
   const [particlePositions, setParticlePositions] = useState<Array<{x: number, y: number}>>([]);
+  const [isMounted, setIsMounted] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.01,
   });
+
+  // Set mounted state to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Generate floating particles for hover effect
   useEffect(() => {
@@ -135,27 +142,29 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-green-400/20 rounded-full"
-            animate={{
-              x: [Math.random() * 1000, Math.random() * 1000],
-              y: [Math.random() * 1000, Math.random() * 1000],
-            }}
-            transition={{
-              duration: Math.random() * 20 + 10,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-      </div>
+      {isMounted && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-green-400/20 rounded-full"
+              animate={{
+                x: [(i * 50) % 1000, ((i * 50) + 500) % 1000],
+                y: [(i * 30) % 1000, ((i * 30) + 600) % 1000],
+              }}
+              transition={{
+                duration: (i % 5) * 4 + 15,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+              style={{
+                left: `${(i * 5) % 100}%`,
+                top: `${(i * 7) % 100}%`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto relative">
         <motion.div

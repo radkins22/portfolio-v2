@@ -22,7 +22,7 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.01,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {

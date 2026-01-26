@@ -6,12 +6,12 @@ import { Menu, X, Code, Home, User, Briefcase, Mail, MessageSquare, Cpu, Brain }
 
 const navItems = [
   { name: 'Home', href: '#home', icon: Home },
-  { name: 'About', href: '#about', icon: User },
   { name: 'Projects', href: '#projects', icon: Code },
   { name: 'Skills', href: '#skills', icon: Cpu },
-  { name: 'Interactive', href: '#interactive', icon: Brain },
   { name: 'Experience', href: '#experience', icon: Briefcase },
+  { name: 'About', href: '#about', icon: User },
   { name: 'Contact', href: '#contact', icon: Mail },
+  { name: 'Interactive', href: '#interactive', icon: Brain },
 ];
 
 export default function Navigation() {

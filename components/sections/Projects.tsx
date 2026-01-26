@@ -8,21 +8,36 @@ import { Github, ExternalLink, Code, Eye, Star, GitBranch, Play, Lock, Globe, X 
 const projects = [
   {
     id: 1,
-    title: "Flashcard AI (Production Site)",
+    title: "ProcurePath - Grant Management Platform",
     description:
-      "Developed an AI-powered flashcard generation platform using Next.js, JavaScript, and Supabase with integrated authentication, enabling users to automatically create personalized study materials and track learning progress through intelligent spaced repetition algorithms.",
-    image: "/images/projects/flashcard.png",
-    tech: ["Next.js", "JavaScript", "Supabase", "AI/ML", "Authentication"],
-    github: "https://github.com/rhiggins-banyanlabs/flashcard-ai",
+      "Built a comprehensive grant management platform using the MERN stack with Next.js and TypeScript. Features AI-powered grant summaries, intelligent matching algorithms, and streamlined application workflows to help organizations find and apply for funding opportunities.",
+    image: "/images/projects/procurepath.png",
+    tech: ["Next.js", "TypeScript", "React", "MongoDB", "Express", "Node.js", "AI/ML"],
+    github: "https://github.com/radkins22",
     demoVideo: "",
-    liveLink: "https://dontbomb.vercel.app",
-    isCodePrivate: false,
+    liveLink: "https://procurepath.ojt.banyanlabs.io/",
+    isCodePrivate: true,
     categories: ["Web Apps", "AI/ML"],
-    stats: { stars: 145, forks: 32, views: "2.1k" },
-    gradient: "from-indigo-500 to-purple-500",
+    stats: { stars: 156, forks: 42, views: "3.2k" },
+    gradient: "from-blue-600 to-indigo-600",
   },
   {
     id: 2,
+    title: "Upcurve - Social Impact Platform",
+    description:
+      "Developed a full-stack social impact platform connecting organizations with causes and campaigns. Built with React, Next.js, TypeScript, and Supabase PostgreSQL backend to enable users to fund causes, amplify impact, and make meaningful differences in their communities.",
+    image: "/images/projects/upcurve.png",
+    tech: ["Next.js", "TypeScript", "React", "Supabase", "PostgreSQL"],
+    github: "https://github.com/radkins22",
+    demoVideo: "",
+    liveLink: "https://upcurve.life/",
+    isCodePrivate: true,
+    categories: ["Web Apps"],
+    stats: { stars: 142, forks: 38, views: "2.8k" },
+    gradient: "from-purple-600 to-blue-600",
+  },
+  {
+    id: 3,
     title: "HRPR - AI Event Assistant",
     description:
       "Developed an AI-powered Human-like, Responsive, Personal Representative for conferences and festivals. Features voice-driven natural conversation to help attendees find sessions, explore sponsors, and navigate venues in real-time.",
@@ -36,14 +51,14 @@ const projects = [
     ],
     github: "https://github.com/radkins22",
     demoVideo: "https://youtu.be/fHWqxVuYxAU",
-    liveLink: "https://hrpr.banyanlabs.io",
+    liveLink: "https://hrpr-web.ojt.banyanlabs.io/",
     isCodePrivate: true,
     categories: ["Web Apps", "AI/ML"],
     stats: { stars: 89, forks: 21, views: "1.8k" },
     gradient: "from-purple-500 to-pink-500",
   },
   {
-    id: 3,
+    id: 4,
     title: "Assessment Pathways Chrome Extension",
     description:
       "Created an AI-powered Chrome extension for automated grading that integrates seamlessly with educational platforms, enabling teachers to provide instant feedback and assessment on student submissions.",
@@ -58,7 +73,7 @@ const projects = [
     gradient: "from-blue-500 to-purple-500",
   },
   {
-    id: 4,
+    id: 5,
     title: "Reuben Adkins - Musician Portfolio",
     description:
       "Designed and developed a professional portfolio website for a guitarist, featuring music samples, tour dates, and booking functionality with a focus on artistic presentation and user engagement.",
@@ -71,7 +86,7 @@ const projects = [
       "CSS",
     ],
     github: "https://github.com/radkins22/Musician-landing-page",
-    demoVideo: "", // You'll need to add demo video URL
+    demoVideo: "",
     liveLink: "https://reubenadkins.com",
     isCodePrivate: false,
     categories: ["Web Apps", "Open Source"],
@@ -79,14 +94,14 @@ const projects = [
     gradient: "from-pink-500 to-rose-500",
   },
   {
-    id: 5,
+    id: 6,
     title: "Willy's Philly's Food Truck Website",
     description:
       "Collaborated on building a responsive frontend for a local Arizona-based food truck using React and Tailwind CSS, emphasizing mobile-first design and brand consistency.",
     image: "/images/projects/willys-phillys.png",
     tech: ["React", "Tailwind CSS", "JavaScript", "Responsive Design"],
     github: "https://github.com/radkins22",
-    demoVideo: "", // You'll need to add demo video URL
+    demoVideo: "",
     liveLink: "https://willysphillys.com/",
     isCodePrivate: true,
     categories: ["Web Apps"],
@@ -94,14 +109,14 @@ const projects = [
     gradient: "from-orange-500 to-red-500",
   },
   {
-    id: 6,
+    id: 7,
     title: "Rachael Higgins Portfolio",
     description:
       "Built an interactive portfolio with Next.js 14 featuring 3D visualizations using Three.js, AI-powered chat assistant, Framer Motion animations, and optimized performance achieving 98+ Lighthouse scores.",
     image: "/images/projects/portfolio.png",
     tech: ["React", "Tailwind CSS", "Typescript", "Three.js", "Next.js", "AI/ML"],
     github: "https://github.com/radkins22/Portfolio",
-    demoVideo: "", // You'll need to add demo video URL
+    demoVideo: "",
     liveLink: "https://not-your-avg-nerd.dev/",
     isCodePrivate: false,
     categories: ["Web Apps", "AI/ML", "Open Source"],
@@ -119,7 +134,7 @@ export default function Projects() {
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.01,
   });
 
   // Function to convert YouTube URL to embed URL
@@ -220,8 +235,8 @@ export default function Projects() {
                   <div className="relative aspect-[16/10] overflow-hidden group bg-gray-800">
                     {/* Project Image */}
                     {project.image && project.image !== '/api/placeholder/600/400' ? (
-                      <img 
-                        src={project.image} 
+                      <img
+                        src={project.image}
                         alt={project.title}
                         className={`absolute inset-0 w-full h-full transition-all duration-500 group-hover:scale-105 group-hover:brightness-110 ${
                           project.id === 5

@@ -59,7 +59,7 @@ const experiences = [
 export default function Experience() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.01,
   });
   const [matrixStreams, setMatrixStreams] = useState<Array<{id: number, x: number, chars: string[], delay: number}>>([]);
 
@@ -118,7 +118,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-black">
       {/* Matrix Rain Effect for Experience Section */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {matrixStreams.map((stream) => (
